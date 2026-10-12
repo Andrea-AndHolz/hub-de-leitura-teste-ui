@@ -1,9 +1,11 @@
 /// <reference types="cypress" />
 import { faker } from '@faker-js/faker';
+import cadastroPage from '../support/pages/cadastro-page';
 
 describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
+
     beforeEach(() => {
-        cy.visit('register.html');
+        cadastroPage.visitarPaginaCadastro();
     });
 
     it('Deve fazer o cadastro com sucesso - Usando função JS', () => {
@@ -35,8 +37,19 @@ describe('Funcionalidade: Cadastro no Hub de Leitura', () => {
     it('Deve preencher o cadastro com sucesso - Usando comando customizado', () => {
         let email = `teste${Date.now()}@teste.com`;
         let nome = faker.person.fullName({sex: 'female'});// Gerando nome feminino ou male masculino
-        cy.preencherCadastro(nome, email, '11999999999', 'senha123', 'senha123');
+        cy.preencherCadastro(nome, email, '11999999999', 'Teste@123', 'Teste@123');
         cy.url().should('include', 'dashboard');
+    });
+
+    it('Deve fazer o cadastro com sucesso - Usando comando Page Object', () => {
+        let email = `teste${Date.now()}@teste.com`;
+        cadastroPage.preencherCadastro('Andi Holz', email, '11898998888','senha789', 'senha789');
+        cy.url().should('include','dashboard');
+    });
+
+    it.only('Deve validar mensagem ao tentar cadastrar sem preencher nome', () => {
+        cadastroPage.preencherCadastro('', 'andreab@teste.com', '119779955', 'senha456', 'senha456');
+        cy.get(':nth-child(1) > .invalid-feedback').should('contain', 'Nome deve ter pelo menos 2 caracteres');
     });
 
 })
