@@ -1,10 +1,11 @@
 {
   "name": "hub-de-leitura-teste-ui",
   "version": "1.0.0",
-  "description": "testes com cypress",
+  "description": "Este projeto trata-se de um teste de UI para Hub de Leitura da Ebac",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run --browser chrome",
+    "cy:report": "npx cypress run --brrowser chrome --record --key 380b9762-0929-4ccb-810a-2b77bf2f6e46"
   },
   "repository": {
     "type": "git",
