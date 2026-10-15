@@ -5,9 +5,10 @@ describe('Funcionalidade:Catalogo de Livros', () => {
     cy.visit('/catalog.html');
   });
 
-    it.skip('Deve clicar no botão Adicionar à cesta', () => {
+    it('Deve clicar no botão Adicionar à cesta', () => {
         cy.get(':nth-child(1) > .card > .card-body > .mt-auto > .d-grid > .btn-primary').click();
         cy.get('#cart-count').should('contain', '1');
+        cy.get(':nth-child(1) > .card > .card-body > .mt-auto > .d-grid> .btn-primary').should('be.visible');
     });
 
     it('Deve clicar em todos os botões Adicionar à cesta', () => {

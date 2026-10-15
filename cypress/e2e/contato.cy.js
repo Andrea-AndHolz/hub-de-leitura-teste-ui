@@ -25,7 +25,7 @@ describe('Funcionalidade: Contato', () => {
 
   it('Deve validar mensagem de erro ao enviar formulário sem preencher campo email', () => {
     cy.get('[name="name"]').type('Andrea Buchholz');
-    cy.get('[name="email"]').clear;
+    cy.get('[name="email"]').clear();
     cy.get('[name="subject"]').select('Dúvidas Gerais');//obs sem acento cria erro
     cy.get('[name="message"]').type('Teste de preenchimento do campo mensagem');
     cy.get('#btn-submit').click();
